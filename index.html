@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-do List </title>
+    <title>Todo - List</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Enter "list" to show all Tasks.</h1>
-    <h1>Enter "add" to add Tasks.</h1>
-    <h1>Enter "delete" to remove Task.</h1>
-    <h1>Enter "quit" to quit todo.</h1>
+<div class="container">
+    <div class="todo">
+        <h2>Todo List <img src="assets/images/icon.png"></h2>
+        <div class="row">
+            <input type="text" id="input-button" placeholder="Add your Text" />
+            <button onclick="addTask()"> Add </button>
+        </div>
+        <ul id="list-container">
+            <!-- <li>Task 1</li>
+            <li>Task 2</li>
+            <li>Task 3</li> -->
+        </ul>
+    </div>
+</div>
+<script src="script.js"></script>
 
-    <script src="app.js"></script>
-    
+
+</div>
 </body>
 </html>
