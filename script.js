@@ -1,29 +1,37 @@
-let todo=[]
+const inputBox = document.getElementById("input-button");
+const listContainer = document.getElementById("list-container");
 
-let req = prompt("Please enter the request");
+function addTask() {
+    if (inputBox.value === '') {
+        alert("You must write something");
+    } else {
+        let li = document.createElement("li");
+        li.textContent = inputBox.value; // Use textContent instead of innerHTML
 
-while(true){
-    if(req == "quit"){
-        console.log("Quitting app");
-        break;
+        listContainer.appendChild(li);
+
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7"; // Close (×) symbol
+        li.appendChild(span);
     }
-    if(req == 'list'){
-        console.log('-------------');
-        for(let i =0 ;i< todo.length;i++){
-            console.log(i , todo[i]);
-        } 
-        console.log('-------------');
-    }else if(req == 'add'){
-        let taskk = prompt("Enter the task to be added");
-        todo.push(taskk);
-        console.log("Task added");
-    } else if(req == 'delete'){
-        let idx = prompt("Enter the index to be deleted");
-        todo.splice(idx,1);
-        console.log("!! Task Deleted !!");
-    } else{
-        console.log("Wrong Choice");
-    }
-
-    req = prompt("Please enter your request");
+    inputBox.value = '';
+    saveData()
 }
+
+listContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "LI") { 
+        e.target.classList.toggle("checked");
+        saveData()
+    } else if (e.target.tagName === "SPAN") { 
+        e.target.parentElement.remove();
+        saveData()
+    }
+}, false);
+
+function saveData(){
+    localStorage.setItem("data",listContainer.innerHTML);
+}
+function showTask(){
+    listContainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
